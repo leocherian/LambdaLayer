@@ -73,14 +73,14 @@ Resources:
                  - 'iam:UpdateRole'
                  - 'iam:GetRolePolicy'
                  - 'lambda:GetPolicy'
-                 - 'lambda:GetRole'
+                 - 'iam:GetRole'
                  - 'iam:DetachRolePolicy'
                  - 'lambda:PublishLayerVersion'
                  - 'cloudformation:*'
                 Resource: '*'
               - Effect: Allow
                 Action:
-                  - 's3:ListBuckets'
+                  - 's3:ListBucket'
                   - 's3:GetObject'
                   - 's3:PutObject'
                 Resource: !Sub
