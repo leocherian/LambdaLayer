@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: sam app with lambda and layer
+
+Resources:
+    LambdaFunction:
+        Type: AWS::Serverless::Function 
+        Properties:
+            FunctionName: 'LambdaAppFunction'
+            Handler: src/function.lambdaHandler
+            CodeUri: ''            
+            Runtime: python3.8
+            Layers:
+              - !Ref LambdaDepLayer
+    LambdaDepLayer:
+        Type: AWS::Serverless::LayerVersion
+        Properties:
+            LayerName: PandasV2Layer
+            Description: Dependencies for sam app 
+            ContentUri: layer/
+            CompatibleRuntimes:
+              - python3.8
+            RetentionPolicy: Retain
+        Metadata:
+          BuildMethod: python3.8
